@@ -1,2 +1,3 @@
-# wp-lubstarter
+# wp-lubstarter v 0.01 _beta
+
 Wersja _beta motywu startowego Wordpress.
