@@ -1,0 +1,94 @@
+/*
+Theme Name: Lubstarter from LBN
+Theme URI:
+Author: the WordPress team
+Author URI: https://wordpress.org/
+Description: Logo po lewej, menu po prawej. Strona główna, kontakt. Bootstrap.
+Version: 1.0
+License: GNU General Public License v2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
+Tags: one-column, two-columns, right-sidebar, accessibility-ready, custom-background, custom-colors, custom-header, custom-menu, editor-style, featured-images, flexible-header, microformats, post-formats, rtl-language-support, sticky-post, threaded-comments, translation-ready, blog
+Text Domain: lubstarter
+This theme, like WordPress, is licensed under the GPL.
+Use it to make something cool, have fun, and share what you've learned with others.
+*/
+html,
+body{height:100%;font-family:'Lato';}
+a{color:#333;text-decoration:none;}
+a:hover{text-decoration:none;}
+img {width:100%; height:auto;}
+.container {padding-right: 15px; padding-left: 15px; margin-right: auto; margin-left: auto;}
+#overlay {z-index: 99999 !important;}
+#lightbox {z-index: 99999 !important;}
+/***HEADER***/
+header{margin-top:17px;}
+/***NAVIGATION***/
+.navbar-fixed-bottom .navbar-collapse, .navbar-fixed-top .navbar-collapse{max-height:500px !important;height:auto !important;}
+.navbar-collapse.in{overflow-y:hidden;height:auto;}
+.navbar-inverse .navbar-nav>li>a{color:#fff;}
+.navbar-inverse .navbar-nav>li.current-menu-item>a{color:#de234d;}
+.current-menu-item a{color:#de234d;}
+.navbar-inverse{background-color:#222;border-color:#080808;height:69px;}
+.navbar-fixed-bottom, .navbar-fixed-top{margin-top: 0;}
+@media (min-width:768px){.navbar-nav{float:right;margin:0;margin-top:8px;}}
+.nav>li>a{position:relative;display:block;padding:10px 10px;}
+.nav>li{margin:0 2.5px;}
+@media (min-width:768px){.navbar-nav>li>a{padding-top:10px;padding-bottom:10px;}
+}
+.navbar-nav>li>a{padding-top:10px;padding-bottom:10px;line-height:20px;}
+.after-slider{padding:50px 80px;}
+.after-slider p{font-family:Lato;color:#333333;font-size:28px;font-weight:900;line-height:1.5;text-align:center;}
+.title{font-family:Lato;color:#333333;font-size:30px;font-weight:900;line-height:1.5;text-align:center;text-transform:uppercase;display:block;position:relative;overflow:hidden;}
+/* .title:before,
+.title:after{content:"";display:inline-block;height:3px;border-top:3px solid #cc3366;position:relative;vertical-align:middle;width:50%;top:-2px;}
+.title:before{right:0.5em;margin-left:-50%;}
+.title:after{left:0.5em;margin-right:-50%;} */
+.title-excerpt{font-family:Lato;color:#333333;font-size:22px;font-weight:400;line-height:1.2;text-align:center;}
+.after-img{margin-top:10px;}
+/***PAGE***/
+#page {padding: 4% 0;}
+.page-header{padding-bottom:9px;margin:20px 0 0 0;border-bottom:1px solid transparent;}
+/****FOOTER****/
+#footer-cont{background:#000; no-repeat;background-size:cover;background-position:center;width:100%;height:auto;padding:3% 0;}
+.footer-title{font-family:Lato;color:#fff;font-size:24px;font-weight:700;line-height:24px;margin-bottom:50px;}
+.foot-text{padding:10px 5%;}
+.foot-tit{font-family:Lato;color:#fff;font-size:18px;font-weight:900;text-align:left;}
+.foot-ex{font-family:Lato;color:#fff;font-size:16px;font-weight:400;line-height:30px;text-align:left;}
+.foot-boot{padding:2% 0;}
+.foot-copy{font-family:Lato;color:#cccccc;font-size:14px;font-weight:400;line-height:24px;text-align:right;}
+#footer-cont::-webkit-input-placeholder{color:#fff;font-family:Montserrat, "Helvetica Neue", sans-serif;}
+#footer-cont:-moz-placeholder{color:#fff;font-family:Montserrat, "Helvetica Neue", sans-serif;}
+#footer-cont::-moz-placeholder{color:#fff;font-family:Montserrat, "Helvetica Neue", sans-serif;opacity:1;}
+#footer-cont:-ms-input-placeholder{color:#fff;font-family:Montserrat, "Helvetica Neue", sans-serif;}
+#footer-cont .wpcf7-validation-errors{color:#fff;}
+/***MEDIAQERIES***/
+@media (min-width:768px){
+.dropdown:hover .dropdown-menu {display: block;}
+ul.nav li.dropdown:hover ul.dropdown-menu{ display: block; }
+.nav .dropdown-toggle .caret { content: ""; }}
+@media (max-width:1200px){
+.navbar-brand{width:140px;}
+.navbar-brand > img{width:195px;}
+.nav>li>a{padding:10px 9px;}}
+@media (max-width:1024px){#referencje img.odd{margin-left:-20px;}}
+@media (max-width:991px){.row-inner{padding:2% 0;}
+.navbar .container{width:100%;}
+.navbar-fixed-bottom, .navbar-fixed-top{position:relative;right:0;left:0;z-index:99; margin-top:-20px;}
+.navbar .navbar-nav{float:right;margin:0;margin-top:8px;margin-right:20px;}
+.navbar-inverse .navbar-collapse, .navbar-inverse .navbar-form{border-color:#101010;background:#222;}
+.footer-top {text-align: center;}
+#footer-cont, #footer-cont .foot-tit, #footer-cont .foot-ex{text-align:center !important;}
+.foot-copy{font-family:Lato;color:#cccccc;font-size:14px;font-weight:400;line-height:24px;text-align:center;}
+header {margin-top:-20px !important;}}
+@media (max-width:767px){.navbar .container{width:100%;}
+.navbar .navbar-nav{float:left;margin:0;margin-top:8px;margin-right:20px;width:100%;}
+#footer-cont, #footer-cont .foot-tit, #footer-cont .foot-ex{text-align:center !important;}
+.nav>li{margin:10px 2.5px;}
+.title{font-size:24px;}
+.black-tit{font-family:Lato;color:#333333;font-size:19px;font-weight:900;text-align:center !important;padding:2% 0;}
+.row-inner{padding:2% 0;}
+.navbar-fixed-bottom .navbar-collapse, .navbar-fixed-top .navbar-collapse{max-height:500px !important;height:auto !important;padding-bottom:30px;}
+.foot-copy{font-family:Lato;color:#cccccc;font-size:14px;font-weight:400;line-height:24px;text-align:center;}
+.text-right{text-align:center;}}
+@media (max-width:600px){.after-slider p{font-family:Lato;color:#333333;font-size:22px;font-weight:900;line-height:1.5;text-align:center;}}
+@media (max-width:480px){.after-slider{padding:30px 20px;}}
