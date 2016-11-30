@@ -70,7 +70,7 @@ ul.nav li.dropdown:hover ul.dropdown-menu{ display: block; }
 .nav .dropdown-toggle .caret { content: ""; }}
 @media (max-width:1200px){
 .navbar-brand{width:140px;}
-.navbar-brand > img{width:195px;}
+.navbar-brand > img{width:auto;}
 .nav>li>a{padding:10px 9px;}}
 @media (max-width:1024px){#referencje img.odd{margin-left:-20px;}}
 @media (max-width:991px){.row-inner{padding:2% 0;}
