@@ -138,8 +138,3 @@ function lubstarter_cpt_slider() {
 add_action( 'init', 'lubstarter_cpt_slider', 0 );
 }
 
-function lubstarter_featured_image_column_image( $image ) {
-    if ( !has_post_thumbnail() )
-        return trailingslashit( get_stylesheet_directory_uri() ) . 'images/no-featured-image';
-}
-add_filter( 'featured_image_column_default_image', 'lubstarter_featured_image_column_image' );
