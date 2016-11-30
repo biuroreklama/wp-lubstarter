@@ -90,3 +90,56 @@ function lubstarter_prefix_the_custom_logo() {
 		the_custom_logo();
 	}
 }
+
+if ( ! function_exists('lubstarter_cpt_slider') ) {
+// Register Custom Post Type
+function lubstarter_cpt_slider() {
+	$labels = array(
+		'name'                => _x( 'Slajdy', 'Post Type General Name', 'lubstarter' ),
+		'singular_name'       => _x( 'Slajd', 'Post Type Singular Name', 'lubstarter' ),
+		'menu_name'           => __( 'SG Slider', 'lubstarter' ),
+		'name_admin_bar'      => __( 'SG Slider', 'lubstarter' ),
+		'parent_item_colon'   => __( 'Parent Item:', 'lubstarter' ),
+		'all_items'           => __( 'Wszystkie slajdy', 'lubstarter' ),
+		'add_new_item'        => __( 'Dodaj nowy slajd', 'lubstarter' ),
+		'add_new'             => __( 'Dodaj nowy', 'lubstarter' ),
+		'new_item'            => __( 'Nowy element', 'lubstarter' ),
+		'edit_item'           => __( 'Edit Item', 'lubstarter' ),
+		'update_item'         => __( 'Update Item', 'lubstarter' ),
+		'view_item'           => __( 'View Item', 'lubstarter' ),
+		'search_items'        => __( 'Search Item', 'lubstarter' ),
+		'not_found'           => __( 'Nie znaleziono', 'lubstarter' ),
+		'not_found_in_trash'  => __( 'Nie znaleziono w koszu', 'lubstarter' ),
+	);
+
+	$args = array(
+		'label'               => __( 'slider', 'lubstarter' ),
+		'description'         => __( 'Custom Post Types Slider', 'lubstarter' ),
+		'labels'              => $labels,
+		'supports'            => array( 'title', 'thumbnail', 'editor', 'excerpt' ),
+		'taxonomies'          => array( ),
+		'hierarchical'        => false,
+		'public'              => false, // not show frontend as post
+		'show_ui'             => true,
+		'show_in_menu'        => true,
+		'menu_position'       => 5,
+		'menu_icon'           => 'dashicons-slides',
+		'show_in_admin_bar'   => true,
+		'show_in_nav_menus'   => true,
+		'can_export'          => true,
+		'has_archive'         => true,
+		'exclude_from_search' => false,
+		'publicly_queryable'  => true,
+		'capability_type'     => 'page',
+	);
+	register_post_type( 'slider', $args );
+}
+// Hook into the 'init' action
+add_action( 'init', 'lubstarter_cpt_slider', 0 );
+}
+
+function lubstarter_featured_image_column_image( $image ) {
+    if ( !has_post_thumbnail() )
+        return trailingslashit( get_stylesheet_directory_uri() ) . 'images/no-featured-image';
+}
+add_filter( 'featured_image_column_default_image', 'lubstarter_featured_image_column_image' );
