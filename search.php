@@ -1,7 +1,7 @@
 <?php get_header(); ?>
 <?php if ( have_posts() ) : ?>
-          <?php printf( __( 'Wyszukiwanie:', 'arkadia' ), '' . esc_html( get_search_query() ) . '' ); ?>
-      <?php printf( __( '%s', 'arkadia' ), '' . esc_html( get_search_query() ) . '' ); ?>
+          <?php printf( __( 'Wyszukiwanie:', 'lubstarter' ), '' . esc_html( get_search_query() ) . '' ); ?>
+      <?php printf( __( '%s', 'lubstarter' ), '' . esc_html( get_search_query() ) . '' ); ?>
 
 <section id="another-page">
   <?php
@@ -28,17 +28,17 @@
 <?php  endwhile;
     			// Previous/next page navigation.
     			the_posts_pagination( array(
-    				'prev_text'          => __( '<i class="fa fa-angle-left"></i>', 'arkadia' ),
-    				'next_text'          => __( '<i class="fa fa-angle-right"></i>', 'arkadia' ),
-    				'before_page_number' => '<span class="meta-nav screen-reader-text">' . __( '', 'arkadia' ) . ' </span>',
+    				'prev_text'          => __( '<i class="fa fa-angle-left"></i>', 'lubstarter' ),
+    				'next_text'          => __( '<i class="fa fa-angle-right"></i>', 'lubstarter' ),
+    				'before_page_number' => '<span class="meta-nav screen-reader-text">' . __( '', 'lubstarter' ) . ' </span>',
     			) );
     		// If no content, include the "No posts found" template.
     		else : ?>
         <header id="header-background" class="" style="height: 640px; background:url(http://tomek.68798.v.tld.pl/arkadia/wp-content/uploads/2016/11/slide2.jpg) no-repeat; background-size: cover;">
 
-                      <div class="slider-title-single"><?php _e( 'Nie znaleziono', 'arkadia' ); ?></div>
+                      <div class="slider-title-single"><?php _e( 'Nie znaleziono', 'lubstarter' ); ?></div>
 
-                        <h3 class="primary-title-single"><?php printf( __( '%s', 'arkadia' ), '' . esc_html( get_search_query() ) . '' ); ?></h3>
+                        <h3 class="primary-title-single"><?php printf( __( '%s', 'lubstarter' ), '' . esc_html( get_search_query() ) . '' ); ?></h3>
                 
         </header>
 <section id="none">
@@ -50,12 +50,12 @@
 
 		<?php elseif ( is_search() ) : ?>
 
-			<p><?php _e( 'Nic nie znaleziono. Prosimy spróbować ponownie', 'arkadia' ); ?></p>
+			<p><?php _e( 'Nic nie znaleziono. Prosimy spróbować ponownie', 'lubstarter' ); ?></p>
 
 
 		<?php else : ?>
 
-			<p><?php _e( 'Wygląda na to, że nie możesz czegoś wyszukać. Spróbuj ponownie.', 'arkadia' ); ?></p>
+			<p><?php _e( 'Wygląda na to, że nie możesz czegoś wyszukać. Spróbuj ponownie.', 'lubstarter' ); ?></p>
 
 
 		<?php endif; ?>
