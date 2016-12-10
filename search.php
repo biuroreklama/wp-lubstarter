@@ -34,19 +34,19 @@
     			) );
     		// If no content, include the "No posts found" template.
     		else : ?>
-        <header id="header-background" class="" style="height: 640px; background:url(http://tomek.68798.v.tld.pl/arkadia/wp-content/uploads/2016/11/slide2.jpg) no-repeat; background-size: cover;">
+        <header id="header-background" class="" style="height: 640px; background:url(http://tomek.68798.v.tld.pl/lubstarter/wp-content/uploads/2016/11/slide2.jpg) no-repeat; background-size: cover;">
 
                       <div class="slider-title-single"><?php _e( 'Nie znaleziono', 'lubstarter' ); ?></div>
 
                         <h3 class="primary-title-single"><?php printf( __( '%s', 'lubstarter' ), '' . esc_html( get_search_query() ) . '' ); ?></h3>
-                
+
         </header>
 <section id="none">
 	<div class="page-content">
     <div class="container">
 		<?php if ( is_home() && current_user_can( 'publish_posts' ) ) : ?>
 
-			<p><?php printf( __( 'Gotowy opublikować coś nowego? <a href="%1$s">Get started here</a>.', 'arkadia' ), esc_url( admin_url( 'post-new.php' ) ) ); ?></p>
+			<p><?php printf( __( 'Gotowy opublikować coś nowego? <a href="%1$s">Get started here</a>.', 'lubstarter' ), esc_url( admin_url( 'post-new.php' ) ) ); ?></p>
 
 		<?php elseif ( is_search() ) : ?>
 

@@ -1,6 +1,6 @@
 <?php get_header(); ?>
          <!-- Half Page Image Background Carousel Header -->
-    <header class="page-head" style="background: url('http://tomek.68798.v.tld.pl/domosystem2/wp-content/uploads/2016/10/background.jpg') no-repeat; background-position: center;
+    <header class="page-head" style="background: url('') no-repeat; background-position: center;
     background-size: cover;">
     </header>
 
@@ -36,7 +36,7 @@
 		<?php
 			/* translators: %s: Name of current post */
 			the_content( sprintf(
-				__( 'Zobacz więcej', 'domos' ),
+				__( 'Zobacz więcej', 'lubstarter' ),
 				get_the_title()
 			) );
 		?>
@@ -47,9 +47,9 @@
 			<?php endwhile;
 			// Previous/next page navigation.
 			the_posts_pagination( array(
-				'prev_text'          => __( 'Poprzednie', 'domos' ),
-				'next_text'          => __( 'Następna', 'domos' ),
-				'before_page_number' => '<span class="meta-nav screen-reader-text">' . __( ' ', 'twentysixteen' ) . ' </span>',
+				'prev_text'          => __( 'Poprzednie', 'lubstarter' ),
+				'next_text'          => __( 'Następna', 'lubstarter' ),
+				'before_page_number' => '<span class="meta-nav screen-reader-text">' . __( ' ', 'lubstarter' ) . ' </span>',
 			) );
 		// If no content, include the "No posts found" template.
 		else : ?>

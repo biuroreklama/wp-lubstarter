@@ -43,16 +43,16 @@
 			if ( is_singular( 'attachment' ) ) {
 				// Parent post navigation.
 				the_post_navigation( array(
-					'prev_text' => _x( '<span class="meta-nav">Published in</span><span class="post-title">%title</span>', 'Parent post link', 'domos' ),
+					'prev_text' => _x( '<span class="meta-nav">Published in</span><span class="post-title">%title</span>', 'Parent post link', 'lubstarter' ),
 				) );
 			} elseif ( is_singular( 'post' ) ) {
 				// Previous/next post navigation.
 				the_post_navigation( array(
-					'next_text' => '<span class="meta-nav" aria-hidden="true">' . __( ' ', 'domos' ) . '</span> ' .
-						'<span class="screen-reader-text">' . __( '', 'domos' ) . '</span> ' .
+					'next_text' => '<span class="meta-nav" aria-hidden="true">' . __( ' ', 'lubstarter' ) . '</span> ' .
+						'<span class="screen-reader-text">' . __( '', 'lubstarter' ) . '</span> ' .
 						'<span class="post-title">%title</span>',
-					'prev_text' => '<span class="meta-nav" aria-hidden="true">' . __( ' ', 'domos' ) . '</span> ' .
-						'<span class="screen-reader-text">' . __( ' ', 'domos' ) . '</span> ' .
+					'prev_text' => '<span class="meta-nav" aria-hidden="true">' . __( ' ', 'lubstarter' ) . '</span> ' .
+						'<span class="screen-reader-text">' . __( ' ', 'lubstarter' ) . '</span> ' .
 						'<span class="post-title">%title</span>',
 				) );
 			}

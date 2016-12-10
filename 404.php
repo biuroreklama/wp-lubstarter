@@ -15,17 +15,6 @@ Podanej strony nie znaleziono
 </section>
 
 <section id="callaction">
-  <div class="container">
-    <div class="row">
-      <div class="col-md-8">
-  <div class="title-call">SPODOBAŁA CI SIĘ NASZA OFERTA?</div>
-  <div class="excerpt-call">Do złożenia zamówienia wystarczy uzupełnienie prostego i krótkiego formularza.</div>
 
-      </div>
-      <div class="col-md-4">
-        <a class="button-call" href="<?php bloginfo('url'); ?>/zloz-zamowienie/">tak, zamawiam!</a>
-      </div>
-    </div>
-  </div>
 </section>
 <?php get_footer(); ?>

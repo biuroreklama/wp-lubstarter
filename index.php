@@ -17,15 +17,15 @@
 		<?php
 			/* translators: %s: Name of current post */
 			the_content( sprintf(
-				__( 'Zobacz więcej', 'domos' ),
+				__( 'Zobacz więcej', 'lubstarter' ),
 				get_the_title()
 			) );
 			wp_link_pages( array(
-				'before'      => '<div class="page-links"><span class="page-links-title">' . __( 'Pages:', 'domos' ) . '</span>',
+				'before'      => '<div class="page-links"><span class="page-links-title">' . __( 'Pages:', 'lubstarter' ) . '</span>',
 				'after'       => '</div>',
 				'link_before' => '<span>',
 				'link_after'  => '</span>',
-				'pagelink'    => '<span class="screen-reader-text">' . __( 'Page', 'domos' ) . ' </span>%',
+				'pagelink'    => '<span class="screen-reader-text">' . __( 'Page', 'lubstarter' ) . ' </span>%',
 				'separator'   => '<span class="screen-reader-text">, </span>',
 			) );
 		?>
@@ -36,9 +36,9 @@
 			<?php endwhile;
 			// Previous/next page navigation.
 			the_posts_pagination( array(
-				'prev_text'          => __( 'Previous page', 'domos' ),
-				'next_text'          => __( 'Next page', 'domos' ),
-				'before_page_number' => '<span class="meta-nav screen-reader-text">' . __( 'Page', 'domos' ) . ' </span>',
+				'prev_text'          => __( 'Previous page', 'lubstarter' ),
+				'next_text'          => __( 'Next page', 'lubstarter' ),
+				'before_page_number' => '<span class="meta-nav screen-reader-text">' . __( 'Page', 'lubstarter' ) . ' </span>',
 			) );
 		// If no content, include the "No posts found" template.
 		else : ?>

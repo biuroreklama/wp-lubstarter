@@ -137,4 +137,3 @@ function lubstarter_cpt_slider() {
 // Hook into the 'init' action
 add_action( 'init', 'lubstarter_cpt_slider', 0 );
 }
-

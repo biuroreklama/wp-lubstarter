@@ -18,7 +18,7 @@
 <div class="col-md-4 text-center">
 </div>
 <div class="col-md-4">
-<p class="foot-copy">Copyright &copy; RynekLubelski.pl 2016</p>
+<p class="foot-copy">Copyright &copy; Rynek Lubelski 2016</p>
 </div>
 </div>
 </div>
