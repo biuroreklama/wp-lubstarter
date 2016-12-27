@@ -137,3 +137,22 @@ function lubstarter_cpt_slider() {
 // Hook into the 'init' action
 add_action( 'init', 'lubstarter_cpt_slider', 0 );
 }
+
+function fb_add_search_box ( $items, $args ) {
+	// only on primary menu
+	if( 'primary' === $args -> theme_location )
+		$items .= '<li class="menu-item menu-item-koszyk"><a class="cart-contents" href="' . wc_get_cart_url() .'" title="'. _e( '' ) . '">' . sprintf ( _n( 'Koszyk (%d)', 'Koszyk (%d)', WC()->cart->get_cart_contents_count() ), WC()->cart->get_cart_contents_count() ) . '</a>
+</li>';
+	return $items;
+}
+add_filter( 'wp_nav_menu_items', 'fb_add_search_box', 10, 2 );
+
+function remove_more_link_scroll( $link ) {
+	$link = preg_replace( '|#more-[0-9]+|', '', $link );
+	return $link;
+}
+add_filter( 'the_content_more_link', 'remove_more_link_scroll' );
+function modify_read_more_link() {
+    return '<div><a class="more-link" href="' . get_permalink() . '">Czytaj więcej</a></div>';
+}
+add_filter( 'the_content_more_link', 'modify_read_more_link' );
