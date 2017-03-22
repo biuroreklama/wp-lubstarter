@@ -252,6 +252,7 @@ function lubstarter_scripts() {
 	// Theme stylesheet.
 	wp_enqueue_style( 'lubstarter-style', get_stylesheet_uri() );
 	wp_enqueue_style( 'lubstarter-bootstrap', get_template_directory_uri() . '/css/bootstrap.min.css', array( 'lubstarter-style' ), '20160816' );
+	wp_enqueue_style( 'lubstarter-fontawesome', get_template_directory_uri() . '/css/font-awesome.min.css', array(), '4.7.0' );
 	// Load the Internet Explorer specific stylesheet.
 	wp_enqueue_style( 'lubstarter-ie', get_template_directory_uri() . '/css/ie.css', array( 'lubstarter-style' ), '20160816' );
 	wp_style_add_data( 'lubstarter-ie', 'conditional', 'lt IE 10' );
