@@ -1,3 +1,5 @@
-# wp-lubstarter v 0.2 _beta
+# wp-lubstarter v 1.0
 
-Wersja _beta motywu startowego Wordpress.
+Oficjalna wersja motywu startowego Lubstarter.
+Motyw oparty o Twenty Sixteen Wordpress Theme
+Zawiera część elementów frameworka Bootstrap.

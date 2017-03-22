@@ -1,35 +1,34 @@
-<!-- Footer -->
-<footer id="footer-cont">
-<div class="container">
-<div class="footer-top">
-<div class="row">
-<div class="col-md-6">
-<p class="footer-title"></p>
-</div>
-<div class="col-md-6">
-<p class="footer-title"></p>
-</div>
-</div>
-</div>
-<div class="line"></div>
-<div class="row foot-boot">
-<div class="col-md-4">
-</div>
-<div class="col-md-4 text-center">
-</div>
-<div class="col-md-4">
-<p class="foot-copy">Copyright &copy; Rynek Lubelski 2016</p>
-</div>
-</div>
-</div>
-</footer>
-</div>
-<!-- /.container -->
+<?php
+/**
+ * The template for displaying the footer
+ *
+ * Contains the closing of the #content div and all content after
+ *
+ * @package WordPress
+ * @subpackage Twenty_Sixteen
+ * @since Twenty Sixteen 1.0
+ */
+?>
+
+		</div><!-- .site-content -->
+
+		<footer id="colophon" class="site-footer" role="contentinfo">
+			<div class="site-info">
+				<?php
+					/**
+					 * Fires before the lubstarter footer text for footer customization.
+					 *
+					 * @since Twenty Sixteen 1.0
+					 */
+					do_action( 'lubstarter_credits' );
+				?>
+				<span class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></span>
+				<a href="<?php echo esc_url( __( 'https://wordpress.org/', 'lubstarter' ) ); ?>"><?php printf( __( 'Proudly powered by %s', 'lubstarter' ), 'WordPress' ); ?></a>
+			</div><!-- .site-info -->
+		</footer><!-- .site-footer -->
+	</div><!-- .site-inner -->
+</div><!-- .site -->
+
 <?php wp_footer(); ?>
-<!-- jQuery -->
-<!-- Bootstrap Core JavaScript -->
-<script src="<?php bloginfo('template_url'); ?>/js/bootstrap.js"></script>
-<script src="<?php bloginfo('template_url'); ?>/js/functions.js"></script>
-<!-- Script to Activate the Carousel -->
 </body>
 </html>

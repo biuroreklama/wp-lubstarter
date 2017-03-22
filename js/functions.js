@@ -1,139 +1,200 @@
+/* global screenReaderText */
 /**
- * @preserve
- * Project: Bootstrap Hover Dropdown
- * Author: Cameron Spear
- * Version: v2.2.1
- * Contributors: Mattia Larentis
- * Dependencies: Bootstrap's Dropdown plugin, jQuery
- * Description: A simple plugin to enable Bootstrap dropdowns to active on hover and provide a nice user experience.
- * License: MIT
- * Homepage: http://cameronspear.com/blog/bootstrap-dropdown-on-hover-plugin/
+ * Theme functions file.
+ *
+ * Contains handlers for navigation and widget area.
  */
-;(function ($, window, undefined) {
-    // outside the scope of the jQuery plugin to
-    // keep track of all dropdowns
-    var $allDropdowns = $();
 
-    // if instantlyCloseOthers is true, then it will instantly
-    // shut other nav items when a new one is hovered over
-    $.fn.dropdownHover = function (options) {
-        // don't do anything if touch is supported
-        // (plugin causes some issues on mobile)
-        if('ontouchstart' in document) return this; // don't want to affect chaining
+( function( $ ) {
+	var body, masthead, menuToggle, siteNavigation, socialNavigation, siteHeaderMenu, resizeTimer;
 
-        // the element we really care about
-        // is the dropdown-toggle's parent
-        $allDropdowns = $allDropdowns.add(this.parent());
+	function initMainNavigation( container ) {
 
-        return this.each(function () {
-            var $this = $(this),
-                $parent = $this.parent(),
-                defaults = {
-                    delay: 500,
-                    hoverDelay: 0,
-                    instantlyCloseOthers: true
-                },
-                data = {
-                    delay: $(this).data('delay'),
-                    hoverDelay: $(this).data('hover-delay'),
-                    instantlyCloseOthers: $(this).data('close-others')
-                },
-                showEvent   = 'show.bs.dropdown',
-                hideEvent   = 'hide.bs.dropdown',
-                // shownEvent  = 'shown.bs.dropdown',
-                // hiddenEvent = 'hidden.bs.dropdown',
-                settings = $.extend(true, {}, defaults, options, data),
-                timeout, timeoutHover;
+		// Add dropdown toggle that displays child menu items.
+		var dropdownToggle = $( '<button />', {
+			'class': 'dropdown-toggle',
+			'aria-expanded': false
+		} ).append( $( '<span />', {
+			'class': 'screen-reader-text',
+			text: screenReaderText.expand
+		} ) );
 
-            $parent.hover(function (event) {
-                // so a neighbor can't open the dropdown
-                if(!$parent.hasClass('open') && !$this.is(event.target)) {
-                    // stop this event, stop executing any code
-                    // in this callback but continue to propagate
-                    return true;
-                }
+		container.find( '.menu-item-has-children > a' ).after( dropdownToggle );
 
-                openDropdown(event);
-            }, function () {
-                // clear timer for hover event
-                window.clearTimeout(timeoutHover)
-                timeout = window.setTimeout(function () {
-                    $this.attr('aria-expanded', 'false');
-                    $parent.removeClass('open');
-                    $this.trigger(hideEvent);
-                }, settings.delay);
-            });
+		// Toggle buttons and submenu items with active children menu items.
+		container.find( '.current-menu-ancestor > button' ).addClass( 'toggled-on' );
+		container.find( '.current-menu-ancestor > .sub-menu' ).addClass( 'toggled-on' );
 
-            // this helps with button groups!
-            $this.hover(function (event) {
-                // this helps prevent a double event from firing.
-                // see https://github.com/CWSpear/bootstrap-hover-dropdown/issues/55
-                if(!$parent.hasClass('open') && !$parent.is(event.target)) {
-                    // stop this event, stop executing any code
-                    // in this callback but continue to propagate
-                    return true;
-                }
+		// Add menu items with submenus to aria-haspopup="true".
+		container.find( '.menu-item-has-children' ).attr( 'aria-haspopup', 'true' );
 
-                openDropdown(event);
-            });
+		container.find( '.dropdown-toggle' ).click( function( e ) {
+			var _this            = $( this ),
+				screenReaderSpan = _this.find( '.screen-reader-text' );
 
-            // handle submenus
-            $parent.find('.dropdown-submenu').each(function (){
-                var $this = $(this);
-                var subTimeout;
-                $this.hover(function () {
-                    window.clearTimeout(subTimeout);
-                    $this.children('.dropdown-menu').show();
-                    // always close submenu siblings instantly
-                    $this.siblings().children('.dropdown-menu').hide();
-                }, function () {
-                    var $submenu = $this.children('.dropdown-menu');
-                    subTimeout = window.setTimeout(function () {
-                        $submenu.hide();
-                    }, settings.delay);
-                });
-            });
+			e.preventDefault();
+			_this.toggleClass( 'toggled-on' );
+			_this.next( '.children, .sub-menu' ).toggleClass( 'toggled-on' );
 
-            function openDropdown(event) {
-                if($this.parents(".navbar").find(".navbar-toggle").is(":visible")) {
-                    // If we're inside a navbar, don't do anything when the
-                    // navbar is collapsed, as it makes the navbar pretty unusable.
-                    return;
-                }
+			// jscs:disable
+			_this.attr( 'aria-expanded', _this.attr( 'aria-expanded' ) === 'false' ? 'true' : 'false' );
+			// jscs:enable
+			screenReaderSpan.text( screenReaderSpan.text() === screenReaderText.expand ? screenReaderText.collapse : screenReaderText.expand );
+		} );
+	}
+	initMainNavigation( $( '.main-navigation' ) );
 
-                // clear dropdown timeout here so it doesnt close before it should
-                window.clearTimeout(timeout);
-                // restart hover timer
-                window.clearTimeout(timeoutHover);
+	masthead         = $( '#masthead' );
+	menuToggle       = masthead.find( '#menu-toggle' );
+	siteHeaderMenu   = masthead.find( '#site-header-menu' );
+	siteNavigation   = masthead.find( '#site-navigation' );
+	socialNavigation = masthead.find( '#social-navigation' );
 
-                // delay for hover event.
-                timeoutHover = window.setTimeout(function () {
-                    $allDropdowns.find(':focus').blur();
+	// Enable menuToggle.
+	( function() {
 
-                    if(settings.instantlyCloseOthers === true)
-                        $allDropdowns.removeClass('open');
+		// Return early if menuToggle is missing.
+		if ( ! menuToggle.length ) {
+			return;
+		}
 
-                    // clear timer for hover event
-                    window.clearTimeout(timeoutHover);
-                    $this.attr('aria-expanded', 'true');
-                    $parent.addClass('open');
-                    $this.trigger(showEvent);
-                }, settings.hoverDelay);
-            }
-        });
-    };
-    
-    $(document).ready(function () {
-          // apply dropdownHover to all elements with the data-hover="dropdown" attribute
-          $('[data-hover="dropdown"]').dropdownHover();
-      });
-      // Bootstrap menu magic
-      $(window).resize(function() {
-        if ($(window).width() < 768) {
-          $(".dropdown-toggle").attr('data-toggle', 'dropdown');
-        } else {
-          $(".dropdown-toggle").removeAttr('data-toggle dropdown');
-        }
-      });
+		// Add an initial values for the attribute.
+		menuToggle.add( siteNavigation ).add( socialNavigation ).attr( 'aria-expanded', 'false' );
 
-  })(jQuery, window);
+		menuToggle.on( 'click.lubstarter', function() {
+			$( this ).add( siteHeaderMenu ).toggleClass( 'toggled-on' );
+
+			// jscs:disable
+			$( this ).add( siteNavigation ).add( socialNavigation ).attr( 'aria-expanded', $( this ).add( siteNavigation ).add( socialNavigation ).attr( 'aria-expanded' ) === 'false' ? 'true' : 'false' );
+			// jscs:enable
+		} );
+	} )();
+
+	// Fix sub-menus for touch devices and better focus for hidden submenu items for accessibility.
+	( function() {
+		if ( ! siteNavigation.length || ! siteNavigation.children().length ) {
+			return;
+		}
+
+		// Toggle `focus` class to allow submenu access on tablets.
+		function toggleFocusClassTouchScreen() {
+			if ( window.innerWidth >= 910 ) {
+				$( document.body ).on( 'touchstart.lubstarter', function( e ) {
+					if ( ! $( e.target ).closest( '.main-navigation li' ).length ) {
+						$( '.main-navigation li' ).removeClass( 'focus' );
+					}
+				} );
+				siteNavigation.find( '.menu-item-has-children > a' ).on( 'touchstart.lubstarter', function( e ) {
+					var el = $( this ).parent( 'li' );
+
+					if ( ! el.hasClass( 'focus' ) ) {
+						e.preventDefault();
+						el.toggleClass( 'focus' );
+						el.siblings( '.focus' ).removeClass( 'focus' );
+					}
+				} );
+			} else {
+				siteNavigation.find( '.menu-item-has-children > a' ).unbind( 'touchstart.lubstarter' );
+			}
+		}
+
+		if ( 'ontouchstart' in window ) {
+			$( window ).on( 'resize.lubstarter', toggleFocusClassTouchScreen );
+			toggleFocusClassTouchScreen();
+		}
+
+		siteNavigation.find( 'a' ).on( 'focus.lubstarter blur.lubstarter', function() {
+			$( this ).parents( '.menu-item' ).toggleClass( 'focus' );
+		} );
+	} )();
+
+	// Add the default ARIA attributes for the menu toggle and the navigations.
+	function onResizeARIA() {
+		if ( window.innerWidth < 910 ) {
+			if ( menuToggle.hasClass( 'toggled-on' ) ) {
+				menuToggle.attr( 'aria-expanded', 'true' );
+			} else {
+				menuToggle.attr( 'aria-expanded', 'false' );
+			}
+
+			if ( siteHeaderMenu.hasClass( 'toggled-on' ) ) {
+				siteNavigation.attr( 'aria-expanded', 'true' );
+				socialNavigation.attr( 'aria-expanded', 'true' );
+			} else {
+				siteNavigation.attr( 'aria-expanded', 'false' );
+				socialNavigation.attr( 'aria-expanded', 'false' );
+			}
+
+			menuToggle.attr( 'aria-controls', 'site-navigation social-navigation' );
+		} else {
+			menuToggle.removeAttr( 'aria-expanded' );
+			siteNavigation.removeAttr( 'aria-expanded' );
+			socialNavigation.removeAttr( 'aria-expanded' );
+			menuToggle.removeAttr( 'aria-controls' );
+		}
+	}
+
+	// Add 'below-entry-meta' class to elements.
+	function belowEntryMetaClass( param ) {
+		if ( body.hasClass( 'page' ) || body.hasClass( 'search' ) || body.hasClass( 'single-attachment' ) || body.hasClass( 'error404' ) ) {
+			return;
+		}
+
+		$( '.entry-content' ).find( param ).each( function() {
+			var element              = $( this ),
+				elementPos           = element.offset(),
+				elementPosTop        = elementPos.top,
+				entryFooter          = element.closest( 'article' ).find( '.entry-footer' ),
+				entryFooterPos       = entryFooter.offset(),
+				entryFooterPosBottom = entryFooterPos.top + ( entryFooter.height() + 28 ),
+				caption              = element.closest( 'figure' ),
+				newImg;
+
+			// Add 'below-entry-meta' to elements below the entry meta.
+			if ( elementPosTop > entryFooterPosBottom ) {
+
+				// Check if full-size images and captions are larger than or equal to 840px.
+				if ( 'img.size-full' === param ) {
+
+					// Create an image to find native image width of resized images (i.e. max-width: 100%).
+					newImg = new Image();
+					newImg.src = element.attr( 'src' );
+
+					$( newImg ).on( 'load.lubstarter', function() {
+						if ( newImg.width >= 840  ) {
+							element.addClass( 'below-entry-meta' );
+
+							if ( caption.hasClass( 'wp-caption' ) ) {
+								caption.addClass( 'below-entry-meta' );
+								caption.removeAttr( 'style' );
+							}
+						}
+					} );
+				} else {
+					element.addClass( 'below-entry-meta' );
+				}
+			} else {
+				element.removeClass( 'below-entry-meta' );
+				caption.removeClass( 'below-entry-meta' );
+			}
+		} );
+	}
+
+	$( document ).ready( function() {
+		body = $( document.body );
+
+		$( window )
+			.on( 'load.lubstarter', onResizeARIA )
+			.on( 'resize.lubstarter', function() {
+				clearTimeout( resizeTimer );
+				resizeTimer = setTimeout( function() {
+					belowEntryMetaClass( 'img.size-full' );
+					belowEntryMetaClass( 'blockquote.alignleft, blockquote.alignright' );
+				}, 300 );
+				onResizeARIA();
+			} );
+
+		belowEntryMetaClass( 'img.size-full' );
+		belowEntryMetaClass( 'blockquote.alignleft, blockquote.alignright' );
+	} );
+} )( jQuery );

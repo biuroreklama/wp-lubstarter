@@ -1,45 +1,28 @@
-<?php get_header(); ?>
-         <!-- Half Page Image Background Carousel Header -->
+<?php
+/**
+ * The template for displaying all single posts and attachments
+ *
+ * @package WordPress
+ * @subpackage Twenty_Sixteen
+ * @since Twenty Sixteen 1.0
+ */
 
-<section id="context">
-    <div class="container">
+get_header(); ?>
 
-        <div class="row">
-            <div class="col-md-8">
-
-           <?php
+<div id="primary" class="content-area">
+	<main id="main" class="site-main" role="main">
+		<?php
 		// Start the loop.
-		while ( have_posts() ) : the_post(); ?>
+		while ( have_posts() ) : the_post();
 
+			// Include the single post content template.
+			get_template_part( 'template-parts/content', 'single' );
 
-        <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
-
-		<?php the_title( '<h1 class="entry-title">', '</h1>' ); ?>
-            <div class="line-red2"></div>
-             <div class="breadcrumbs" typeof="BreadcrumbList" vocab="http://schema.org/">
-    <?php if(function_exists('bcn_display'))
-    {
-        bcn_display();
-    }?>
-</div>
-<p><?php the_date(); ?></p>
-<div class="featured-image">
-	<?php the_post_thumbnail(); ?>
-            </div>
-	<div class="entry-content">
-		<?php
-			the_content();
-
-			if ( '' !== get_the_author_meta( 'description' ) ) {
-				get_template_part( 'template-parts/biography' );
+			// If comments are open or we have at least one comment, load up the comment template.
+			if ( comments_open() || get_comments_number() ) {
+				comments_template();
 			}
-		?>
-	</div><!-- .entry-content -->
 
-</article><!-- #post-## -->
-
-
-		<?php
 			if ( is_singular( 'attachment' ) ) {
 				// Parent post navigation.
 				the_post_navigation( array(
@@ -48,29 +31,24 @@
 			} elseif ( is_singular( 'post' ) ) {
 				// Previous/next post navigation.
 				the_post_navigation( array(
-					'next_text' => '<span class="meta-nav" aria-hidden="true">' . __( ' ', 'lubstarter' ) . '</span> ' .
-						'<span class="screen-reader-text">' . __( '', 'lubstarter' ) . '</span> ' .
+					'next_text' => '<span class="meta-nav" aria-hidden="true">' . __( 'Next', 'lubstarter' ) . '</span> ' .
+						'<span class="screen-reader-text">' . __( 'Next post:', 'lubstarter' ) . '</span> ' .
 						'<span class="post-title">%title</span>',
-					'prev_text' => '<span class="meta-nav" aria-hidden="true">' . __( ' ', 'lubstarter' ) . '</span> ' .
-						'<span class="screen-reader-text">' . __( ' ', 'lubstarter' ) . '</span> ' .
+					'prev_text' => '<span class="meta-nav" aria-hidden="true">' . __( 'Previous', 'lubstarter' ) . '</span> ' .
+						'<span class="screen-reader-text">' . __( 'Previous post:', 'lubstarter' ) . '</span> ' .
 						'<span class="post-title">%title</span>',
 				) );
 			}
+
 			// End of the loop.
 		endwhile;
 		?>
 
+	</main><!-- .site-main -->
 
+	<?php get_sidebar( 'content-bottom' ); ?>
 
-            </div>
-       <div class="col-md-4">
-            <section id="sidebar">
+</div><!-- .content-area -->
 
-           <?php dynamic_sidebar('sidebar-2'); ?>
-
-           </section>
-         </div>
-       </div>
-     </div>
-</section>
-       <?php get_footer(); ?>
+<?php get_sidebar(); ?>
+<?php get_footer(); ?>
