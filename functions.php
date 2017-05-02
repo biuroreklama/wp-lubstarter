@@ -253,6 +253,7 @@ function lubstarter_scripts() {
 	wp_enqueue_style( 'lubstarter-style', get_stylesheet_uri() );
 	wp_enqueue_style( 'lubstarter-bootstrap', get_template_directory_uri() . '/css/bootstrap.min.css', array( 'lubstarter-style' ), '20160816' );
 	wp_enqueue_style( 'lubstarter-fontawesome', get_template_directory_uri() . '/css/font-awesome.min.css', array(), '4.7.0' );
+wp_enqueue_style( 'lubstarter-owl', get_template_directory_uri() . '/css/owl.carousel.min.css', array( 'lubstarter-style' ), '20160816' );
 	// Load the Internet Explorer specific stylesheet.
 	wp_enqueue_style( 'lubstarter-ie', get_template_directory_uri() . '/css/ie.css', array( 'lubstarter-style' ), '20160816' );
 	wp_style_add_data( 'lubstarter-ie', 'conditional', 'lt IE 10' );
@@ -278,9 +279,11 @@ function lubstarter_scripts() {
 	if ( is_singular() && wp_attachment_is_image() ) {
 		wp_enqueue_script( 'lubstarter-keyboard-image-navigation', get_template_directory_uri() . '/js/keyboard-image-navigation.js', array( 'jquery' ), '20160816' );
 	}
-
+	wp_enqueue_script( 'lubstarter-jscript', get_template_directory_uri() . '/js/jquery.min.js', array( 'jquery' ), '20160816', true );
+wp_enqueue_script( 'lubstarter-owlscript', get_template_directory_uri() . '/js/owl.carousel.min.js', array( 'jquery' ), '20160816', true );
 	wp_enqueue_script( 'lubstarter-script', get_template_directory_uri() . '/js/functions.js', array( 'jquery' ), '20160816', true );
 	wp_enqueue_script( 'lubstarter-bootstrap', get_template_directory_uri() . '/js/bootstrap.min.js', array( 'jquery' ), '20160816', true );
+
 
 	wp_localize_script( 'lubstarter-script', 'screenReaderText', array(
 		'expand'   => __( 'expand child menu', 'lubstarter' ),
