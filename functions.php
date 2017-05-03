@@ -251,7 +251,8 @@ function lubstarter_scripts() {
 
 	// Theme stylesheet.
 	wp_enqueue_style( 'lubstarter-style', get_stylesheet_uri() );
-	wp_enqueue_style( 'lubstarter-bootstrap', get_template_directory_uri() . '/css/bootstrap.min.css', array( 'lubstarter-style' ), '20160816' );
+	wp_enqueue_style( 'lubstarter-animate', get_template_directory_uri() . '/css/animate.css', array( 'lubstarter-style' ), '20160816' );
+	wp_enqueue_style( 'lubstarter-bootstrap', get_template_directory_uri() . '/css/bootstrap.css', array( 'lubstarter-style' ), '20160816' );
 	wp_enqueue_style( 'lubstarter-fontawesome', get_template_directory_uri() . '/css/font-awesome.min.css', array(), '4.7.0' );
 wp_enqueue_style( 'lubstarter-owl', get_template_directory_uri() . '/css/owl.carousel.min.css', array( 'lubstarter-style' ), '20160816' );
 	// Load the Internet Explorer specific stylesheet.
@@ -279,10 +280,10 @@ wp_enqueue_style( 'lubstarter-owl', get_template_directory_uri() . '/css/owl.car
 	if ( is_singular() && wp_attachment_is_image() ) {
 		wp_enqueue_script( 'lubstarter-keyboard-image-navigation', get_template_directory_uri() . '/js/keyboard-image-navigation.js', array( 'jquery' ), '20160816' );
 	}
+	wp_enqueue_script( 'lubstarter-bootstrap', get_template_directory_uri() . '/js/bootstrap.min.js', array( 'jquery' ), '20160816', true );
 	wp_enqueue_script( 'lubstarter-jscript', get_template_directory_uri() . '/js/jquery.min.js', array( 'jquery' ), '20160816', true );
 wp_enqueue_script( 'lubstarter-owlscript', get_template_directory_uri() . '/js/owl.carousel.min.js', array( 'jquery' ), '20160816', true );
 	wp_enqueue_script( 'lubstarter-script', get_template_directory_uri() . '/js/functions.js', array( 'jquery' ), '20160816', true );
-	wp_enqueue_script( 'lubstarter-bootstrap', get_template_directory_uri() . '/js/bootstrap.min.js', array( 'jquery' ), '20160816', true );
 
 
 	wp_localize_script( 'lubstarter-script', 'screenReaderText', array(
@@ -424,3 +425,9 @@ function lubstarter_widget_tag_cloud_args( $args ) {
 	return $args;
 }
 add_filter( 'widget_tag_cloud_args', 'lubstarter_widget_tag_cloud_args' );
+
+function remove_more_link_scroll( $link ) {
+	$link = preg_replace( '|#more-[0-9]+|', '', $link );
+	return $link;
+}
+add_filter( 'the_content_more_link', 'remove_more_link_scroll' );
