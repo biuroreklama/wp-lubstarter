@@ -198,29 +198,39 @@
 		belowEntryMetaClass( 'blockquote.alignleft, blockquote.alignright' );
 	} );
 
-	$('.owl-carousel').owlCarousel({
+	$('#sliderhome').owlCarousel({
+slideSpeed : 300,
+      paginationSpeed : 400,
+      singleItem: true,
+			pagination: false,
+    	rewindSpeed: 500,
+			animateOut: 'fadeOut',
+			animateIn: 'fadeIn',
   loop: true,
   margin: 10,
   nav: true,
 	center: false,
   navText: [
-    "<i class='fa fa-caret-left'></i>",
-    "<i class='fa fa-caret-right'></i>"
+    "<i class='fa fa-angle-left'></i>",
+    "<i class='fa fa-angle-right'></i>"
   ],
   autoplay: true,
   autoplayHoverPause: true,
+	mouseDrag: false,
+
   responsive: {
     0: {
       items: 1
     },
     600: {
-      items: 2
+      items: 1
     },
     1000: {
-      items: 6
+      items: 1
     }
   }
 })
+
 
 
 
