@@ -3363,3 +3363,26 @@ p > video {
 .owl-nav .owl-next {
   right: -30px;
 }
+
+@media (max-width: 290px) {
+    body {
+        overflow-x: hidden;
+    }
+}
+@media (min-width: 768px) {
+    .container {
+        width: 710px !important;
+    }
+}
+
+@media (min-width: 992px) {
+    .container {
+        width: 910px !important;
+    }
+}
+
+@media (min-width: 1200px) {
+    .container {
+        width: 1070px !important;
+    }
+}
