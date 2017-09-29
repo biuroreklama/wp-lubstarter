@@ -431,3 +431,8 @@ function remove_more_link_scroll( $link ) {
 	return $link;
 }
 add_filter( 'the_content_more_link', 'remove_more_link_scroll' );
+
+add_action( 'after_setup_theme', 'woocommerce_support' );
+function woocommerce_support() {
+    add_theme_support( 'woocommerce' );
+}
