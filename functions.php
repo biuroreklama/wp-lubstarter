@@ -280,8 +280,9 @@ wp_enqueue_style( 'lubstarter-owl', get_template_directory_uri() . '/css/owl.car
 	if ( is_singular() && wp_attachment_is_image() ) {
 		wp_enqueue_script( 'lubstarter-keyboard-image-navigation', get_template_directory_uri() . '/js/keyboard-image-navigation.js', array( 'jquery' ), '20160816' );
 	}
-	wp_enqueue_script( 'lubstarter-bootstrap', get_template_directory_uri() . '/js/bootstrap.min.js', array( 'jquery' ), '20160816', true );
+	wp_enqueue_script( 'lubstarter-popper', get_template_directory_uri() . '/js/popper.min.js', array( 'jquery' ), '20160816', true );
 	wp_enqueue_script( 'lubstarter-jscript', get_template_directory_uri() . '/js/jquery.min.js', array( 'jquery' ), '20160816', true );
+    wp_enqueue_script( 'lubstarter-bootstrap', get_template_directory_uri() . '/js/bootstrap.min.js', array( 'jquery' ), '20160816', true );
 wp_enqueue_script( 'lubstarter-owlscript', get_template_directory_uri() . '/js/owl.carousel.min.js', array( 'jquery' ), '20160816', true );
 	wp_enqueue_script( 'lubstarter-script', get_template_directory_uri() . '/js/functions.js', array( 'jquery' ), '20160816', true );
 
@@ -432,6 +433,11 @@ function remove_more_link_scroll( $link ) {
 }
 add_filter( 'the_content_more_link', 'remove_more_link_scroll' );
 
+function modify_read_more_link() {
+return 'Czytaj więcej';
+}
+add_filter( 'the_content_more_link', 'modify_read_more_link' );
+
 add_action( 'after_setup_theme', 'woocommerce_support' );
 function woocommerce_support() {
     add_theme_support( 'woocommerce' );
@@ -440,3 +446,19 @@ function woocommerce_support() {
 add_theme_support( 'wc-product-gallery-zoom' );
 add_theme_support( 'wc-product-gallery-lightbox' );
 add_theme_support( 'wc-product-gallery-slider' );
+
+if ( is_category() ) {
+
+        $title = single_cat_title( '', false );
+
+    } elseif ( is_tag() ) {
+
+        $title = single_tag_title( '', false );
+
+    } elseif ( is_author() ) {
+
+        $title = '<span class="vcard">' . get_the_author() . '</span>' ;
+
+    }
+
+return $title;
