@@ -232,7 +232,7 @@ slideSpeed : 300,
 })
 
 
-
+  
 
 
 } )( jQuery );
