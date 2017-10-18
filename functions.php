@@ -447,18 +447,22 @@ add_theme_support( 'wc-product-gallery-zoom' );
 add_theme_support( 'wc-product-gallery-lightbox' );
 add_theme_support( 'wc-product-gallery-slider' );
 
-if ( is_category() ) {
+add_filter( 'get_the_archive_title', function ($title) {
 
-        $title = single_cat_title( '', false );
+    if ( is_category() ) {
 
-    } elseif ( is_tag() ) {
+            $title = single_cat_title( '', false );
 
-        $title = single_tag_title( '', false );
+        } elseif ( is_tag() ) {
 
-    } elseif ( is_author() ) {
+            $title = single_tag_title( '', false );
 
-        $title = '<span class="vcard">' . get_the_author() . '</span>' ;
+        } elseif ( is_author() ) {
 
-    }
+            $title = '<span class="vcard">' . get_the_author() . '</span>' ;
 
-return $title;
+        }
+
+    return $title;
+
+});
