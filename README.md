@@ -1,3 +1,11 @@
-# wp-lubstarter v 0.2 _beta
+# wp-lubstarter v 1.1
 
-Wersja _beta motywu startowego Wordpress.
+Oficjalna wersja motywu startowego Lubstarter.
+Motyw oparty o Twenty Sixteen Wordpress Theme
+Zawiera część elementów frameworka Bootstrap.
+
+v 1.1
+
+Dodano Owl Carousel 2
+Poprawki functions.php
+Dodano Animate.css
